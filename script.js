@@ -199,7 +199,8 @@ async function fetchPoster(title, year) {
     // If not cached, fetch from OMDb API
     try {
         console.log(`Fetching poster from OMDb for ${title} (${year})`);
-        const response = await fetch("https://majestic-infrequent-calcium.glitch.me/poster?title=${encodeURIComponent(title)}&year=${year}");
+        
+        const response = await fetch(`https://majestic-infrequent-calcium.glitch.me/poster?title=${encodeURIComponent(title)}&year=${year}`);
         const data = await response.json();
         
         if (data.Response === 'True' && data.Poster !== 'N/A') {
