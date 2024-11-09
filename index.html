@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plex Library Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="logo">Plex Library Browser</div>
+        <ul id="library-list"></ul>
+        <div class="nav-actions">
+            <button id="theme-toggle">Light/Dark Mode</button>
+        </div>
+    </nav>
+
+    <!-- Search and Filter Bar -->
+    <select id="sort-options">
+        <option value="title">Title</option>
+        <option value="year">Year</option>
+        <option value="rating">Rating</option>
+        <option value="favorites">Favorites</option>
+        <option value="watchLater">Watch Later</option>
+    </select>
+    
+    <div id="search-filter">
+        <input type="text" id="search-bar" placeholder="Search by title, genre, or year">
+        <select id="sort-options">
+            <option value="title">Title</option>
+            <option value="year">Year</option>
+            <option value="rating">Rating</option>
+        </select>
+        <select id="genre-filter">
+            <option value="">All Genres</option>
+            <!-- Genres will be populated dynamically -->
+        </select>
+        <select id="content-rating-filter">
+            <option value="">All Ratings</option>
+            <!-- Content ratings will be populated dynamically -->
+        </select>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="content">
+        <!-- Loading Spinner -->
+        <div id="loading-spinner">Loading...</div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top">↑ Top</button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
