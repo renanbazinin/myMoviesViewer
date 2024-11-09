@@ -376,3 +376,26 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
     const currentTheme = document.body.classList.contains("dark-mode") ? "dark" : "light";
     localStorage.setItem("theme", currentTheme);
 });
+
+
+document.getElementById("clear-cache").addEventListener("click", clearCache);
+
+// Function to clear cached data
+function clearCache() {
+    // Clear libraries data and any other relevant cached data
+    localStorage.removeItem("librariesData");
+    localStorage.removeItem("favorites");
+    localStorage.removeItem("watchLater");
+
+    // Clear poster cache by removing items with keys that start with "poster_"
+    Object.keys(localStorage).forEach((key) => {
+        if (key.startsWith("poster_")) {
+            localStorage.removeItem(key);
+        }
+    });
+
+    // Notify user and refresh library list
+    alert("Cache cleared successfully!");
+    librariesData = [];
+    fetchPlexData();
+}

@@ -203,3 +203,18 @@ body.dark-mode #back-to-top {
         max-width: 100%;
     }
 }
+
+
+#clear-cache {
+    margin-left: 10px;
+    padding: 8px 12px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#clear-cache:hover {
+    background-color: #d32f2f;
+}
