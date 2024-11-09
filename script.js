@@ -203,9 +203,9 @@ async function fetchPoster(title, year) {
         const response = await fetch(`https://majestic-infrequent-calcium.glitch.me/poster?title=${encodeURIComponent(title)}&year=${year}`);
         const data = await response.json();
         
-        if (data.Response === 'True' && data.Poster !== 'N/A') {
-            localStorage.setItem(cacheKey, data.Poster); // Cache the poster URL
-            return data.Poster;
+        if (data.posterUrl) {
+            localStorage.setItem(cacheKey, data.posterUrl); // Cache the poster URL
+            return data.posterUrl;
         } else {
             return 'https://i.imgur.com/opmOlZ5.png'; // Default placeholder if poster not available
         }
