@@ -141,20 +141,21 @@ async function renderMovies(items) {
         posterImg.src = posterUrl || 'https://i.imgur.com/opmOlZ5.png';
         posterImg.alt = movieTitle;
         posterDiv.appendChild(posterImg);
-
+        //if(movieTitle == "אגתה לאורך כל הדרך")
+        //    console.table(movieData)
         // Details Section
         const detailsDiv = document.createElement('div');
         detailsDiv.classList.add('movie-details');
         detailsDiv.innerHTML = `
             <h2>${movieTitle} (${movieYear})</h2>
-            <p><strong>Rating:</strong> ${movieData.rating || 'N/A'}</p>
+            <p><strong>Rating:</strong> ${movieData.rating || movieData.audienceRating|| 'N/A'}</p>
             <p><strong>Studio:</strong> ${movieData.studio || 'N/A'}</p>
             <p><strong>Summary:</strong> ${movieData.summary || 'N/A'}</p>
             <p><strong>Genres:</strong> ${movieData.Genre ? movieData.Genre.map(g => g.tag).join(', ') : 'N/A'}</p>
             <p><strong>Director:</strong> ${movieData.Director ? movieData.Director.map(d => d.tag).join(', ') : 'N/A'}</p>
             <p><strong>Writers:</strong> ${movieData.Writer ? movieData.Writer.map(w => w.tag).join(', ') : 'N/A'}</p>
             <p><strong>Actors:</strong> ${movieData.Role ? movieData.Role.map(r => r.tag).join(', ') : 'N/A'}</p>
-            <p><strong>Content Rating:</strong> ${movieData.contentRating || 'N/A'}</p>
+            <p><strong>Content Rating:</strong> ${movieData.contentRating  || 'N/A'}</p>
             <p><strong>Video Codec:</strong> ${getVideoCodec(movieData) || 'N/A'}</p>
             <p><strong>Audio Channels:</strong> ${getAudioChannels(movieData) || 'N/A'}</p>
             <p><strong>Resolution:</strong> ${getResolution(movieData) || 'N/A'}</p>
