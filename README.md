@@ -1,90 +1,47 @@
-# Plex Movies Viewer
+# My Movies Viewer
 
-A web-based browser for your Plex media libraries, allowing you to explore movies with detailed metadata, filtering, and easy poster viewing.
+Browse your Plex libraries in a clean, simple UI with search, filters, and posters.
 
-## Configuration
+Live site: http://renanbazinin.github.io/myMoviesViewer
 
-The application uses a configuration file (`config.js`) to manage server endpoints for different environments.
+## Features
 
-### Server Configuration
+- Fast search, genre/content rating filters, and sorting
+- Favorites and Watch Later lists (saved locally)
+- Smart caching of posters and library data
+- Server health badge with details on hover
+- Works as a static site (no build step)
 
-To switch between local development and production environments, edit the `config.js` file:
+## Quick start
 
-```javascript
-const CONFIG = {
-    // Change this to 'local' for local development or 'production' for live server
-    ENVIRONMENT: 'local', 
-    
-    SERVERS: {
-        local: 'http://localhost:5050',        // Your local server port
-        production: 'https://majestic-infrequent-calcium.glitch.me'
-    },
-    
-    // Add your server password here if authentication is enabled
-    PASSWORD: 'your_server_password_here'
-};
-```
+- Just open the live site: http://renanbazinin.github.io/myMoviesViewer
+- If your server is protected, enter your server password in the top bar; it’ll be remembered locally.
 
-### Authentication Setup
+## Configure your server
 
-If your server requires a password (using the `PASSWORD` environment variable), you need to:
+Edit `config.js` to point the app at your server:
 
-1. Set the password in your server's `.env` file:
-   ```
-   PASSWORD=your_secret_password
-   ```
+- Set `ENVIRONMENT` to `'local'` or `'production'`
+- Update the URLs in `SERVERS.local` and `SERVERS.production`
+- Passwords are stored in the browser (localStorage) after you type them in the UI
 
-2. Add the same password to the `config.js` file:
-   ```javascript
-   PASSWORD: 'your_secret_password'
-   ```
+Endpoints the app expects from your server:
+- `GET /health`
+- `GET /libraries`
+- `GET /libraries/:key`
+- `GET /poster?title=...&year=...`
 
-⚠️ **Security Note**: Never commit passwords to version control. Consider using different approaches for production.
+## Developing locally
 
-### Available Endpoints
+- No build needed. Open `index.html` in your browser, or use a simple static server/live server.
+- Make sure your Plex proxy server is running and matches the URL in `config.js`.
 
-The server provides the following endpoints:
+## Troubleshooting
 
-- `GET /health` - Health check to verify server status
-- `GET /libraries` - Get all libraries with items
-- `GET /libraries/:key` - Get specific library by key
-- `GET /poster?title=...&year=...` - Get movie poster by title and year
+- 401 Unauthorized: Set/verify your password in the top bar (or in `config.js`).
+- Health shows “Down”: Check that your server is reachable at the configured URL.
+- Storage quota errors: Use “Clear Cache” in the footer to free space.
 
-### Features
+---
 
-- **Caching**: Both library data and movie posters are cached locally to improve performance
-- **Search & Filter**: Search by title, genre, or year with additional filtering options
-- **Favorites & Watch Later**: Mark movies as favorites or add to watch later list
-- **Theme Toggle**: Switch between light and dark modes
-- **Responsive Design**: Works on desktop and mobile devices
-
-### Local Development
-
-1. Ensure your local server is running on `http://localhost:5050`
-2. Change the `ENVIRONMENT` setting in `config.js` to `'local'`  
-3. If your server requires authentication, add your password to `config.js`
-4. Open `index.html` in your browser
-
-### Production Deployment
-
-1. Set `ENVIRONMENT` to `'production'` in `config.js`
-2. Configure the production password if needed
-3. Deploy the files to your web server
-4. Ensure the production server URL in `config.js` matches your deployed server
-
-### Cache Management
-
-- Use the "Clear Cache" button to remove stored library data and poster cache
-- Cache is automatically used to improve loading times on subsequent visits
-- Poster images are cached indefinitely until manually cleared
-
-## File Structure
-
-```
-myMoviesViewer/
-├── index.html          # Main HTML file
-├── script.js           # Main JavaScript application logic
-├── styles.css          # CSS styling
-├── config.js           # Server configuration
-└── README.md           # This file
-```
+Enjoy your library! If you run into issues, file a bug or tweak `config.js` to match your setup.
