@@ -15,20 +15,24 @@
         <div class="logo">Plex Library Browser</div>
         <ul id="library-list"></ul>
         <div class="nav-actions">
-            <button id="theme-toggle">Light/Dark Mode</button>
-            <button id="clear-cache">Clear Cache</button> 
+            <div class="health-container" id="health-container">
+                <div class="health-badge" id="health-badge" title="Server health">
+                    <span class="health-dot" id="health-dot"></span>
+                    <span class="health-label" id="health-label">Checking…</span>
+                </div>
+                <div class="health-popover" id="health-popover" aria-hidden="true">
+                    <!-- Filled dynamically -->
+                </div>
+            </div>
+            <div class="password-container">
+                <input type="text" id="password-input" placeholder="Server Password" />
+                <button id="password-toggle" title="Hide Password">🙈</button>
+                <div id="password-status" class="status-indicator"></div>
+            </div>
         </div>
     </nav>
 
     <!-- Search and Filter Bar -->
-    <select id="sort-options">
-        <option value="title">Title</option>
-        <option value="year">Year</option>
-        <option value="rating">Rating</option>
-        <option value="favorites">Favorites</option>
-        <option value="watchLater">Watch Later</option>
-    </select>
-    
     <div id="search-filter">
         <input type="text" id="search-bar" placeholder="Search by title, genre, or year">
         <select id="sort-options">
@@ -53,9 +57,30 @@
     </main>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top">↑ Top</button>
+    <button id="back-to-top">↑</button>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p>&copy; 2025 Plex Library Browser</p>
+            </div>
+            <div class="footer-center">
+                <div class="storage-info">
+                    <span id="storage-usage">Cache: Loading...</span>
+                </div>
+            </div>
+            <div class="footer-right">
+                <button id="clear-cache" class="footer-button">
+                    <span class="icon">🗑️</span>
+                    Clear Cache
+                </button>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
